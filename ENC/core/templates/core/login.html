@@ -1,0 +1,24 @@
+
+<div class="row">
+    <div class="col-12" style="text-align: center;"><h3><strong>Ingrese sus Datos</strong></h3></div>
+    <div class="col"></div>
+</div>
+<div class="formulario col-6">
+    {% if si != 2 %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <label for="usuario" style="min-width: 200px;">Codigo de Planta:</label>
+        <input type="text" id="usuario" name="usuario">
+        <br><br>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña">
+        <br>
+        <br>
+        <input type="submit" value="Entrar">
+    </form>
+    {%endif%}
+
+    {% if si == 3 %}
+    <p>Acceso Denegado.</p>
+    {%endif%}
+</div>
