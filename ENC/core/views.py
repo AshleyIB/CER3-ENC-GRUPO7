@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 from .models import *
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
+from .forms import FormularioForm
 
 
 def base(request):
@@ -41,13 +41,12 @@ def login(request):
     return render(request,'core/base.html', data)
 
 def formulario(request):
-    codigo = request.POST.get("codigo")
-    litros = request.POST.get("litros")
-    fecha = request.POST.get("fecha")
-    turno= request.POST.get("turno")
-    hora= request.POST.get("hora")
-    operador= request.POST.get("operador")
+    if request.method == 'POST':
+        form = FormularioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('base')
+    else:
+        form = FormularioForm()
 
-    nuevo_formulario = Formulario(codigo=codigo, litros=litros, fecha=fecha, turno=turno, hora=hora, operador=operador)
-    nuevo_formulario.save()
-    return redirect("base")
+    return render(request, 'core/formulario.html', {'form': form})

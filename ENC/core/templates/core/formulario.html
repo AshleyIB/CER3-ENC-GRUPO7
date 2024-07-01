@@ -1,1 +1,47 @@
 {%load static%}
+
+<div class="row" id="proyectos">
+    <div class="container-fluid">
+
+        <div class="col-lg-md-12"> 
+            <h1 style="font-size: 3vw; font-weight: bolder; text-align: center; color: #e5b300;">Formulario</h1>
+        </div>
+        <div class="col-lg-md-12"> 
+            <h1 style="font-size: 4vw; font-weight: bolder; text-align: center;">Ingresar Produccion</h1>
+        </div>
+        <div style="text-align: center;">
+            <form action="{% url 'formulario' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-3">
+                        <p>Codigo Combustible:</p>
+                        {{ form.codigo }}
+                    </div>
+                    <div class="col-3">
+                        <p>Litros:</p>
+                        {{ form.litros }}
+                    </div>
+                    <div class="col-3">
+                        <p>Fecha de Produccion:</p>
+                        {{ form.fecha }}
+                    </div>
+                    <div class="col-3">
+                        <p>Turno:</p>
+                        {{ form.turno }}
+                    </div>
+                    <div class="col-3">
+                        <p>Hora:</p>
+                        {{ form.hora }}
+                    </div>
+                    <div class="col-3">
+                        <p>Operador:</p>
+                        {{ form.operador }}
+                    </div>
+                    <div class="col-2">
+                        <button type="submit">ENVIAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -19,4 +19,14 @@ body{
     border-radius: 10vw;
     margin-top: 7vw;
     margin-bottom: 5vw;
+    text-align: center;
+}
+
+.btn-primary{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e5b300;
+    color: #fff;
 }
