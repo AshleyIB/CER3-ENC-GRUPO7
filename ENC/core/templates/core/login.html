@@ -21,4 +21,11 @@
     {% if si == 3 %}
     <p>Acceso Denegado.</p>
     {%endif%}
+
+    {% if si == 2 %}
+    <p>Acceso Concedido.</p>
+    <form action="{% url 'base' %}">
+        <input type="submit" value="Continuar">
+    </form>
+        {% endif %}
 </div>
