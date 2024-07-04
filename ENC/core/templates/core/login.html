@@ -1,31 +1,41 @@
 
-<div class="row">
-    <div class="col-12" style="text-align: center;"><h3><strong>Ingrese sus Datos</strong></h3></div>
-    <div class="col"></div>
-</div>
-<div class="formulario col-6">
-    {% if si != 2 %}
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <label for="usuario" style="min-width: 200px;">Codigo de Planta:</label>
-        <input type="text" id="usuario" name="usuario">
-        <br><br>
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña">
-        <br>
-        <br>
-        <input type="submit" value="Entrar">
-    </form>
-    {%endif%}
-
-    {% if si == 3 %}
-    <p>Acceso Denegado.</p>
-    {%endif%}
-
-    {% if si == 2 %}
-    <p>Acceso Concedido.</p>
-    <form action="{% url 'base' %}">
-        <input type="submit" value="Continuar">
-    </form>
-        {% endif %}
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-12" style="text-align: center;"><h3><strong>Ingrese sus Datos</strong></h3></div>
+        <div class="col"></div>
+    </div>
+    <div class="formulario col-6">
+        {% if si != 2 %}
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <label for="usuario" style="min-width: 200px;">Codigo de Planta:</label>
+            <input type="text" id="usuario" name="usuario">
+            <br><br>
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña">
+            <br>
+            <br>
+            <input type="submit" value="Entrar">
+        </form>
+        {%endif%}
+    
+        {% if si == 3 %}
+        <p>Acceso Denegado.</p>
+        {%endif%}
+    
+        {% if si == 2 %}
+        <p>Acceso Concedido.</p>
+        <form action="{% url 'base' %}">
+            <input type="submit" value="Continuar">
+        </form>
+            {% endif %}
+    </div>
+</body>
+</html>
