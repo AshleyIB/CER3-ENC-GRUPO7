@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from .forms import FormularioForm
+from django.shortcuts import render, redirect
 
 
 def base(request):
@@ -17,28 +18,17 @@ def base(request):
     return render(request, 'core/base.html',data)
 
 def login(request):
-    tipo_usuario = "invitado"
-    users = Usuario.objects.all()
-    codigo = request.POST.get('codigo')
-    contraseña = request.POST.get('contraseña')
-    logeado = 1
-    if (codigo != None) and (contraseña!=None):
-        logeado = 3
+    si = 0
+    if request.method == 'POST':
+        usuario = request.POST['usuario']
+        contrasena = request.POST['contraseña']
+        try:
+            user = Usuario.objects.get(codigo=usuario, contrasena=contrasena)
+            si = 2 
+        except Usuario.DoesNotExist:
+            si = 3  
 
-    for usuario in users:
-        if usuario.codigo == codigo:
-            if contraseña == usuario.contrasena:
-                tipo_usuario = usuario.tipo_usuario
-                logeado = 2
-
-    data={
-        "Usuarios":users,
-        "con":contraseña,
-        "codigo":codigo,
-        "si":logeado,
-        "tipo": tipo_usuario,
-    }
-    return render(request,'core/base.html', data)
+    return render(request, 'core/login.html', {'si': si})
 
 def formulario(request):
     if request.method == 'POST':
