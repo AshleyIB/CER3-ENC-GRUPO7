@@ -1,7 +1,11 @@
 {%load static%}
 
+<link rel="stylesheet" href="{%static 'core/css/bootstrap.css'%}">
+<link rel="stylesheet" href="{%static 'core/css/estilos.css'%}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 <div class="row" id="proyectos">
-    <div class="container-fluid">
 
         <div class="col-lg-md-12"> 
             <h1 style="font-size: 3vw; font-weight: bolder; text-align: center; color: #e5b300;">Formulario</h1>
@@ -10,7 +14,7 @@
             <h1 style="font-size: 4vw; font-weight: bolder; text-align: center;">Ingresar Produccion</h1>
         </div>
         <div style="text-align: center;">
-            <form action="{% url 'formulario' %}" method="POST">
+            <form action="{% url 'base' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-3">

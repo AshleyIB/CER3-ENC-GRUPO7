@@ -10,6 +10,13 @@ from django.shortcuts import render, redirect
 
 def base(request):
     title = "Inicio"
+    if request.method == 'POST':
+        form = FormularioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('base')
+    else:
+        form = FormularioForm()
 
     data = {
         "title" : title,
