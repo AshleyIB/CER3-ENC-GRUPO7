@@ -9,11 +9,22 @@ TIPO_USUARIO = (
 
 class Usuario(models.Model):
     codigo= models.CharField(max_length=7)
+    nombre_usuario= models.CharField(max_length=10,default='Desconocido')
+    apellido_usuario= models.CharField(max_length=10,default='Desconocido')
     contrasena= models.CharField(max_length=10)
     tipo_usuario = models.CharField(max_length=10,choices=TIPO_USUARIO,default="PRD")
     def __str__(self):
         return self.codigo
     
+class Supervisor(models.Model):
+    codigo= models.CharField(max_length=7)
+    nombre_supervisor= models.CharField(max_length=10)
+    apellido_supervisor= models.CharField(max_length=10)
+    contrasena= models.CharField(max_length=10)
+    tipo_usuario = models.CharField(max_length=10,choices=TIPO_USUARIO,default="PRD")
+    def __str__(self):
+        return self.codigo
+
 class Formulario(models.Model):
     codigo= models.CharField(max_length=78)
     litros = models.CharField(max_length=200)
