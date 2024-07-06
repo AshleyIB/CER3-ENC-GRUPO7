@@ -21,6 +21,12 @@
         {% if si != 2 %}
         <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
+            <label for="nombre_usuario" style="min-width: 200px;">Nombre:</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario">
+            <br><br>
+            <label for="apellido_usuario" style="min-width: 200px;">Apellido:</label>
+            <input type="text" id="apellido_usuario" name="apellido_usuario">
+            <br><br>
             <label for="usuario" style="min-width: 200px;">Codigo de Planta:</label>
             <input type="text" id="usuario" name="usuario">
             <br><br>

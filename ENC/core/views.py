@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
 import requests
 from .models import *
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.hashers import check_password
 from .forms import FormularioForm
 from django.shortcuts import render, redirect
 
@@ -29,8 +26,11 @@ def login(request):
     if request.method == 'POST':
         usuario = request.POST['usuario']
         contrasena = request.POST['contraseña']
+        nombre_usuario = request.POST['nombre_usuario']
+        apellido_usuario = request.POST['apellido_usuario']
+        
         try:
-            user = Usuario.objects.get(codigo=usuario, contrasena=contrasena)
+            user = Usuario.objects.get(codigo=usuario, contrasena=contrasena, nombre_usuario=nombre_usuario, apellido_usuario=apellido_usuario)
             si = 2 
         except Usuario.DoesNotExist:
             si = 3  
@@ -46,4 +46,4 @@ def formulario(request):
     else:
         form = FormularioForm()
 
-    return render(request, 'core/formulario.html', {'form': form})
+    return render(request, 'core/base.html', {'form': form})
