@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core import views
+from core.views import listar_registros, modificar_registro
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,6 @@ urlpatterns = [
     path('', views.login, name="login"),
     path('base/',views.base, name="base"),
     path('formulario/',views.formulario, name="formulario"),
+    path('registros/', listar_registros, name='listar_registros'),
+    path('modificar/<int:pk>/', modificar_registro, name='modificar_registro'),
 ]

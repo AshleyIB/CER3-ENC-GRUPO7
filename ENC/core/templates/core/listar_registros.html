@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registros de Producción Diaria</title>
+</head>
+<body>
+    <h2>Mis Registros de Producción Diaria</h2>
+    <ul>
+        {% for registro in registros %}
+        <li>{{ registro.fecha }} - {{ registro.cantidad_producida }} 
+            <a href="{% url 'modificar_registro' registro.pk %}">Modificar</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
