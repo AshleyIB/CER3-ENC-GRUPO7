@@ -21,8 +21,7 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest.urls')),
-    path('', views.base, name="base"),
+    path('', views.login, name="login"),
     path('base/',views.base, name="base"),
-    path('login/',views.login,name="login"),
     path('formulario/',views.formulario, name="formulario"),
 ]
