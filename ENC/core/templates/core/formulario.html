@@ -16,35 +16,21 @@
         <div style="text-align: center;">
             <form action="{% url 'base' %}" method="POST">
                 {% csrf_token %}
-                <div class="row">
-                    <div class="col-3">
-                        <p>Codigo Combustible:</p>
-                        {{ form.codigo }}
-                    </div>
-                    <div class="col-3">
-                        <p>Litros:</p>
-                        {{ form.litros }}
-                    </div>
-                    <div class="col-3">
-                        <p>Fecha de Produccion:</p>
-                        {{ form.fecha }}
-                    </div>
-                    <div class="col-3">
-                        <p>Turno:</p>
-                        {{ form.turno }}
-                    </div>
-                    <div class="col-3">
-                        <p>Hora:</p>
-                        {{ form.hora }}
-                    </div>
-                    <div class="col-3">
-                        <p>Operador:</p>
-                        {{ form.operador }}
-                    </div>
-                    <div class="col-2">
-                        <button type="submit">ENVIAR</button>
-                    </div>
-                </div>
+            <label for="codigo" style="min-width: 200px;">Codigo:</label>
+            <input type="text" id="codigo" name="codigo">
+            <br><br>
+            <label for="litros" style="min-width: 200px;">Litros:</label>
+            <input type="text" id="litros" name="litros">
+            <br><br>
+            <label for="fecha" style="min-width: 200px;">Codigo de Planta:</label>
+            <input type="text" id="fecha" name="fecha">
+            <br><br>
+            <label for="turno" style="min-width: 200px;">Contraseña:</label>
+            <input type="text" id="turno" name="turno">
+            <br>
+            <br>
+            <input type="submit" value="Entrar">
+       
             </form>
         </div>
     </div>
