@@ -2,15 +2,34 @@
 <html>
 <head>
     <title>Registros de Producción Diaria</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}">
 </head>
 <body>
-    <h2>Mis Registros de Producción Diaria</h2>
-    <ul>
-        {% for registro in registros %}
-        <li>{{ registro.fecha }} - {{ registro.cantidad_producida }} 
-            <a href="{% url 'modificar_registro' registro.pk %}">Modificar</a>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h2>Mis Registros de Producción Diaria</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cantidad Producida</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                <tr>
+                    <td>{{ registro.fecha }}</td>
+                    <td>{{ registro.cantidad_producida }}</td>
+                    <td><a href="{% url 'listar_registro' registro.pk %}">Ver Detalles</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No hay registros disponibles</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

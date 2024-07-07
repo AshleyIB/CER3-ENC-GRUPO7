@@ -47,16 +47,21 @@ def formulario(request):
     else:
         form = FormularioForm()
 
-    return render(request, 'core/base.html', {'form': form})
+    return render(request, 'core/formulario.html', {'form': form})
+
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Formulario
+from .forms import FormularioForm
+from django.contrib.auth.decorators import login_required
 
 @login_required
 def listar_registros(request):
-    registros = Formulario.objects.filter(operador=request.user)
-    return render(request, 'listar_registros.html', {'registros': registros})
+    registros = Formulario.objects.filter(usuario=request.user)
+    return render(request, 'core/listar_registros.html', {'registros': registros})
 
 @login_required
 def modificar_registro(request, pk):
-    registro = get_object_or_404(Formulario, pk=pk, operador=request.user)
+    registro = get_object_or_404(Formulario, pk=pk, usuario=request.user)
     if request.method == 'POST':
         form = FormularioForm(request.POST, instance=registro)
         if form.is_valid():
@@ -64,4 +69,4 @@ def modificar_registro(request, pk):
             return redirect('listar_registros')
     else:
         form = FormularioForm(instance=registro)
-    return render(request, 'modificar_registro.html', {'form': form})
+    return render(request, 'core/modificar_registro.html', {'form': form})

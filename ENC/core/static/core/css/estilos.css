@@ -2,31 +2,3 @@
     margin: 0;
     padding: 0;
 }
-
-body{
-    font-family: Montserrat;
-}
-
-.row{
-    text-align: center;
-    align-items:center;
-    margin: 0;
-}
-
-.formulario {
-    background-color: #fff;
-    padding: 12vw;
-    border-radius: 10vw;
-    margin-top: 7vw;
-    margin-bottom: 5vw;
-    text-align: center;
-}
-
-.btn-primary{
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #e5b300;
-    color: #fff;
-}
