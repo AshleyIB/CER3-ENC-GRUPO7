@@ -80,3 +80,30 @@ def editar_produccion(request, id):
     else:
         form = ProduccionForm(instance=produccion)
     return render(request, 'produccion/editar_produccion.html', {'form': form})
+
+''''
+def combustible(request):
+    return HttpResponse('<h1>Combustibles</h1>')
+    title = "Combustibles"
+    #Esto lo que hace es obtener la data API de la ENC
+    response = requests.post('https://api.cne.cl/api/login?email=ashley.iturriaga@usm.cl&password=ninanA23')
+
+    combustibleJSON = response.json()
+
+    combustibles = list()
+
+    for c in combustibleJSON:
+      combustible = Combustible()
+      combustible.tipo = c['nombre']
+      combustible.imagen_url = c['avatar']
+      combustible.especialidad = c['especialidad']
+      combustible.save()
+      combustibles.append(combustible)
+
+
+    data = {
+        "title":title,
+        "combustibles" : combustibles
+    }
+    return render(request, 'core/mostrar_api.html',data)
+'''
