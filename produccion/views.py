@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.http import Http404
 import requests
 from django.conf import settings
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def enviar_notificacion_slack(mensaje):
@@ -20,22 +23,31 @@ def enviar_notificacion_slack(mensaje):
 def index(request):
     return render(request, 'produccion/index.html')
 
+
+def logout_vista(request):
+    logout(request)
+    
+    # Redirigir al usuario a la página de inicio de sesión
+    #return HttpResponseRedirect(reverse('login'))
+    #return render(request, 'registration/logout.html')
+    return HttpResponseRedirect(reverse('login'))
+
 @login_required
 def registro_produccion(request):
     if request.method == 'POST':
         form = ProduccionForm(request.POST)
-               
-        if request.user.groups.filter(name='operario').exists:
+        
+        if request.user.groups.filter(name='operario').exists():
             if form.is_valid():
                 produccion = form.save(commit=False)
                 produccion.operador = request.user
                 produccion.save()
                 mensaje = f'{produccion.fecha_produccion} {produccion.hora_registro} {produccion.codigo_combustible.planta.codigo} – Nuevo Registro de Producción – {produccion.codigo_combustible.codigo} {produccion.litros_producidos} lts | Total Almacenado: {produccion.litros_producidos}'
                 enviar_notificacion_slack(mensaje)
+                request.session['mensaje_exito'] = 'Produccion Almacenada'
                 return redirect('listado_produccion')
         else:
-            form = ProduccionForm()
-            return render(request, 'produccion/registro_produccion.html', {'form': form, 'mensaje': 'Usted no es operador'})
+            return render(request, 'produccion/registro_produccion.html', {'form': form, 'mensaje_error': 'Usted no es operador de planta'})
 
     else:
         form = ProduccionForm()
@@ -43,15 +55,16 @@ def registro_produccion(request):
 
 @login_required
 def listado_produccion(request):
-    producciones = Produccion.objects.filter(operador=request.user, anulado=False)
-    
+    mensaje_exito = request.session.get('mensaje_exito', '')
+    request.session['mensaje_exito'] = ''
+    #producciones = Produccion.objects.filter(operador=request.user, anulado=False)
 
     if request.user.is_staff:
         producciones = Produccion.objects.filter(anulado=False).select_related('codigo_combustible__planta', 'operador')
     else:
         producciones = Produccion.objects.filter(operador=request.user, anulado=False).select_related('codigo_combustible__planta', 'operador')
 
-    return render(request, 'produccion/listado_produccion.html', {'producciones': producciones})
+    return render(request, 'produccion/listado_produccion.html', {'producciones': producciones, 'mensaje_exito': mensaje_exito})
 
 @login_required
 def editar_produccion(request, id):
@@ -67,5 +80,3 @@ def editar_produccion(request, id):
     else:
         form = ProduccionForm(instance=produccion)
     return render(request, 'produccion/editar_produccion.html', {'form': form})
-
-

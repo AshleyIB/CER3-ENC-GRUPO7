@@ -50,7 +50,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
+
+
+
 
 ROOT_URLCONF = 'ENC.urls'
 
@@ -72,8 +76,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ENC.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/accounts/login'
 LOGOUT_REDIRECT_URL = '/'
+
+
 
 #SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/your/webhook/url'
 SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'

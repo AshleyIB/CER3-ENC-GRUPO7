@@ -20,7 +20,7 @@
                     <a class="nav-link" href="{% url 'listado_produccion' %}">Listado de Producción</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                   
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -35,10 +35,21 @@
             <b>Tipo:</b> {% for group in user.groups.all %}
                             {{ group.name }}
                          {% endfor %}
+                         &nbsp;
         </label>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+        </form>
         {% endif %}
     </nav>
     <div class="container">
+        {% if mensaje_exito %}
+            <label class="text-success"><h1>Éxito:</h1> {{ mensaje_exito }}</label>
+        {% endif %}
+        {% if mensaje_error %}
+            <label class="text-danger"><h1>Error:</h1> {{ mensaje_error }}</label>
+        {% endif %}
         {% block content %}
         {% endblock %}
     </div>
