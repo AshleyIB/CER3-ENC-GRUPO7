@@ -1,0 +1,46 @@
+{% extends 'produccion/base.html' %}
+
+{% block title %}Listado de Producción - ENC{% endblock %}
+
+{% block content %}
+{{ mensaje }}
+<h1>Listado de Producción</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Combustible</th>
+            <th>Planta</th>
+            <th>Litros Producidos</th>
+            <th>Fecha de Producción</th>
+            <th>Hora de Registro</th>
+            <th>Turno</th>
+            <th>Operador Ingreso</th>
+            <th>Usuario modifica</th>
+            <th>Fecha modifica</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produccion in producciones %}
+        <tr>
+            <td>{{ produccion.id }}</td>
+            <td>{{ produccion.codigo_combustible.nombre }}</td>
+            <td>{{ produccion.codigo_combustible.planta.nombre }}</td>
+            <td>{{ produccion.litros_producidos }}</td>
+            <td>{{ produccion.fecha_produccion }}</td>
+            <td>{{ produccion.hora_registro }}</td>
+            <td>{{ produccion.get_turno_display }}</td>
+            <td>{{ produccion.operador.first_name }} {{ produccion.operador.last_name }}</td>
+            <td>{{ produccion.modificado_por.first_name }} {{ produccion.modificado_por.last_name }}</td>
+            <th>{{ produccion.fecha_modificacion }}</th>
+            <td>
+                <a href="{% url 'editar_produccion' produccion.id %}" class="btn btn-warning">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+
