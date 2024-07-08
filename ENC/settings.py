@@ -82,7 +82,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 #SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/your/webhook/url'
-SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
 
 DATABASES = {
@@ -114,11 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
