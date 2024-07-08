@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Planta(models.Model):
     codigo = models.CharField(max_length=10, unique=True)
     nombre = models.CharField(max_length=100)
@@ -28,4 +29,4 @@ class Produccion(models.Model):
     anulado = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.codigo_combustible.nombre} - {self.fecha_produccion} - {self.turno}'
+        return f'{self.id} - {self.codigo_combustible.planta.codigo} - {self.codigo_combustible.codigo} - {self.codigo_combustible.nombre} - {self.fecha_produccion} - {self.turno} - {self.litros_producidos} - {self.operador.first_name} - {self.operador.last_name}'

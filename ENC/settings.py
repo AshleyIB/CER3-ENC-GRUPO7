@@ -85,7 +85,6 @@ LOGOUT_REDIRECT_URL = '/'
 SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
