@@ -82,7 +82,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 #SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/your/webhook/url'
-SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
 
 DATABASES = {

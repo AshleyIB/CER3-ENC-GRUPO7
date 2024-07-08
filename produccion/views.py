@@ -25,13 +25,7 @@ def index(request):
     return render(request, 'produccion/index.html')
 
 
-def logout_vista(request):
-    logout(request)
-    
-    # Redirigir al usuario a la página de inicio de sesión
-    #return HttpResponseRedirect(reverse('login'))
-    #return render(request, 'registration/logout.html')
-    return HttpResponseRedirect(reverse('login'))
+
 
 @login_required
 def registro_produccion(request):
